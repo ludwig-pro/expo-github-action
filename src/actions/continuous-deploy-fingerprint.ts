@@ -209,8 +209,6 @@ async function createEASBuildAsync({
   try {
     const extraArgs = isDebug() ? ['--build-logger-level', 'debug'] : [];
 
-    info(`Will run -> eas build --profile ${profile} --platform ${platform} --non-interactive --json --no-wait`);
-
     const execOutput = await getExecOutput(
       await which('eas', true),
       ['build', '--profile', profile, '--platform', platform, '--non-interactive', '--json', '--no-wait', ...extraArgs],
@@ -238,6 +236,8 @@ async function publishEASUpdatesAsync({ cwd, branch }: { cwd: string; branch: st
         silent: !isDebug(),
       }
     );
+    info(`execOutput.stderr: ${execOutput.stderr}`);
+
     stdout = execOutput.stdout;
   } catch (error: unknown) {
     throw new Error(`Could not create a new EAS Update: ${String(error)}`);
