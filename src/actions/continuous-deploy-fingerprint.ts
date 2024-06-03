@@ -208,6 +208,9 @@ async function createEASBuildAsync({
   let stdout: string;
   try {
     const extraArgs = isDebug() ? ['--build-logger-level', 'debug'] : [];
+
+    info(`Will run -> eas build --profile ${profile} --platform ${platform} --non-interactive --json --no-wait`);
+
     const execOutput = await getExecOutput(
       await which('eas', true),
       ['build', '--profile', profile, '--platform', platform, '--non-interactive', '--json', '--no-wait', ...extraArgs],
