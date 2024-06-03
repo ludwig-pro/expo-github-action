@@ -231,7 +231,7 @@ async function publishEASUpdatesAsync({ cwd, branch }: { cwd: string; branch: st
   let stdout: string;
   try {
     const execOutput = await getExecOutput(
-      await which('eas', true),
+      await which('doppler mount -- eas', true),
       ['update', '--auto', '--branch', branch, '--non-interactive', '--json'],
       {
         cwd,
